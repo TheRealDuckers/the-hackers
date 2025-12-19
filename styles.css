@@ -184,4 +184,20 @@ section {
 
 @media (max-width: 768px) {
     .grid {
-        grid-template-columns
+        grid-template-columns;
+    }
+}
+
+.nav-image {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.nav-image img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
