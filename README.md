@@ -2,4 +2,4 @@
 
 
 
-Made with Hack Club Spaces 💖
+A new kind of game...coming to HackClub in 2026.

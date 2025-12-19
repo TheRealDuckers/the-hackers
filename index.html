@@ -3,36 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hackers - The Traitors but with code</title>
+    <title>The Hackers - The Traitors, but with more code</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <h1>The Tratiors</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">The Game</a></li>
-                <li><a href="#">Join</a></li>
-            </ul>
-        </nav>
+        <div class="wrapper">
+            <h1><span>The Tratiors</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="#traitors">The Traitors</a></li>
+                    <li><a href="#hackers">The Hackers</a></li>
+                    <li><a href="#how-to-play">How To Play</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section class="hero">
-        <h2>Welcome to <b>The Hackers</b> - like the traitors, but with a lot more code...</h2>
-        <p>The Traitors is a game where contestants compete in tasks, argue - and murder. Among the "normal" players - called Faithfuls - are Traitors, who secretly meet every night and decide on someone to kill.</p>
-        <br>
-        <p>New for 2026, is a new game - <b>The Hackers.</b> With the same principle as the traitors, but instead of tasks, all the players are working to build an app. However - The UnEthicals (equivilent of traitors) are trying to stop the faithful - by adding bugs and useless features. Every day, one player will be voted out, based on potentially suspicious activity - but the Ethical (faithful) better act fast, because each night the UnEthical will choose one Ethical to be deleted - they won't be able to contribute any more.</p>
+        <div class="wrapper">
+            <h2>Welcome to The Hackers</h2>
+            <p>
+                Like <em>The Traitors</em> — but with a lot more code. 
+                Everyone codes anonymously, argues in hidden Slack channels, then votes someone out.
+            </p>
+        </div>
     </section>
 
-    <section class="content">
-        <h2>Latest News</h2>
-        <p>Stay tuned for upcoming releases, shows, and exclusive content.</p>
+    <section id="traitors">
+        <div class="wrapper grid">
+            <div>
+                <h2 class="section-title">The Traitors</h2>
+                <p class="section-subtitle">
+                    The classic game of suspicion, strategy, and late‑night plotting.
+                </p>
+
+                <div class="card">
+                    <h3>Game premise</h3>
+                    <p>
+                        The Traitors is a game where contestants compete in tasks, argue — and murder.
+                        Among the "normal" players, called <strong>Faithfuls</strong>, are hidden
+                        <strong>Traitors</strong>, who secretly meet every night and decide on someone to kill.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <h3>Roles</h3>
+                    <p>
+                        <strong>Faithfuls:</strong> Work together to spot lies, build trust, 
+                        and vote out suspected Traitors before it is too late.
+                    </p>
+                    <p>
+                        <strong>Traitors:</strong> Blend in, act helpful, and quietly remove players one by one while 
+                        steering suspicion anywhere but themselves.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hackers">
+        <div class="wrapper">
+            <h2 class="section-title">The Hackers — 2026 Edition</h2>
+            <p class="section-subtitle">
+                Same paranoia, new battlefield: a live app build where every line of code could be a clue.
+            </p>
+
+            <div class="card">
+                <h3>New for 2026</h3>
+                <p>
+                    <strong>The Hackers</strong> takes the core idea of The Traitors and drops it into a software project.
+                    Instead of physical tasks, all players are working together to build an app. On the surface, everyone
+                    is part of one big dev team. Underneath, the sabotage is very real.
+                </p>
+                <p>
+                    The <strong>UnEthicals</strong> (equivalent of Traitors) try to stop the Ethicals by adding bugs and useless features.
+                    Every day, one player is voted out based on suspicious activity. Each night, the UnEthicals secretly
+                    delete one Ethical from the project.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Roles in The Hackers</h3>
+                <p>
+                    <strong>Ethicals (Faithfuls):</strong> Genuine builders who want the app to ship clean and functional.
+                </p>
+                <p>
+                    <strong>UnEthicals (Traitors):</strong> Hidden saboteurs who add bugs, useless features, and chaos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-play">
+        <div class="wrapper">
+            <h2 class="section-title">How The Hackers works</h2>
+            <p class="section-subtitle">
+                A tight loop of code → talk → vote → delete.
+            </p>
+
+            <div class="card">
+                <h3>Step‑by‑step game basis</h3>
+                <ul class="steps-list">
+                    <li data-step="1">
+                        <strong>Assemble the dev team.</strong><br>
+                        A few players are secretly chosen as UnEthicals.
+                    </li>
+                    <li data-step="2">
+                        <span class="phase-tag">Code phase</span><br>
+                        <strong>Everyone codes anonymously.</strong><br>
+                        Ethicals push clean code. UnEthicals sneak in bugs.
+                    </li>
+                    <li data-step="3">
+                        <span class="phase-tag">Talk phase</span><br>
+                        <strong>Debate in hidden Slack channels.</strong><br>
+                        Players review commits, question decisions, and defend themselves.
+                    </li>
+                    <li data-step="4">
+                        <strong>Surface suspicions.</strong><br>
+                        Players build cases and try to identify sabotage patterns.
+                    </li>
+                    <li data-step="5">
+                        <span class="phase-tag">Vote phase</span><br>
+                        <strong>Vote someone out.</strong><br>
+                        The team deletes one player from the project.
+                    </li>
+                    <li data-step="6">
+                        <span class="phase-tag">Night phase</span><br>
+                        <strong>UnEthicals choose a target.</strong><br>
+                        They secretly delete one Ethical.
+                    </li>
+                    <li data-step="7">
+                        <strong>Reset and repeat.</strong><br>
+                        Code → talk → vote → delete continues.
+                    </li>
+                    <li data-step="8">
+                        <strong>Endgame.</strong><br>
+                        Ethicals win by voting out all the UnEthicals.  
+                        UnEthicals win if they outnumber all Ethicals.
+                    </li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <footer class="site-footer">
-        <p>© 2025 The Tratiors. All rights reserved.</p>
+        <div class="wrapper">
+            <p>Built by Ethicals - or was it?</p>
+        </div>
     </footer>
 </body>
 </html>
