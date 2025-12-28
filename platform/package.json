@@ -1,5 +1,5 @@
 {
-  "name": "the-hackers-platform",
+  "name": "the-hackers-game-platform",
   "version": "1.0.0",
   "main": "server.js",
   "type": "commonjs",
