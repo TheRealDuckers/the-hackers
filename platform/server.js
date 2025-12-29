@@ -55,7 +55,7 @@ app.get("/login", (req, res) => {
   res.redirect(u.toString());
 });
 
-import { sendSlackMessage } from "./slack.js";
+
 
 const { dmUser } = require("./slack.js");
 
