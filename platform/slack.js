@@ -1,15 +1,11 @@
-// slack.js
-import fetch from "node-fetch";
+const fetch = require("node-fetch");
 
-export async function sendSlackMessage(text) {
-  if (!process.env.SLACK_WEBHOOK_URL) {
-    console.error("Missing SLACK_WEBHOOK_URL");
-    return;
-  }
-
+async function sendSlackMessage(text) {
   await fetch(process.env.SLACK_WEBHOOK_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text }),
   });
 }
+
+module.exports = { sendSlackMessage };
