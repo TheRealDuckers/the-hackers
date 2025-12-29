@@ -57,7 +57,7 @@ app.get("/login", (req, res) => {
 
 import { sendSlackMessage } from "./slack.js";
 
-const { sendSlackMessage } = require("./slack.js");
+const { dmUser } = require("./slack.js");
 
 app.get("/auth/callback", async (req, res) => {
   const code = req.query.code;
@@ -84,11 +84,13 @@ app.get("/auth/callback", async (req, res) => {
 
   req.session.user = user;
 
-  // ⭐ Send Slack message on login
+  // ⭐ DM the user
+  const slackId = user.identity.slack_id;
   const name = user.identity.first_name;
-  const email = user.identity.primary_email;
 
-  sendSlackMessage(`🔔 New login: ${name} (${email})`);
+  if (slackId) {
+    dmUser(slackId, `Hey ${name}! You just logged in 🎉`);
+  }
 
   res.redirect("/");
 });
