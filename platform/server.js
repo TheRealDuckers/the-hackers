@@ -92,7 +92,9 @@ app.get("/", requireAuth, (req, res) => {
     html.replace(
       "{{CONTENT}}",
       `
-      <h1 class="text-xl font-bold mb-4">Welcome, ${req.session.user.name}</h1>
+      <h1 class="text-xl font-bold mb-4">Welcome, ${req.session.user.identity.first_name}
+</h1>
+<p>You shouldn't be here... Its not ready yet!</p>
       <a href="/files" class="text-blue-600 underline">View files</a>
     `
     )
