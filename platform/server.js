@@ -57,6 +57,8 @@ app.get("/login", (req, res) => {
 
 import { sendSlackMessage } from "./slack.js";
 
+const { sendSlackMessage } = require("./slack.js");
+
 app.get("/auth/callback", async (req, res) => {
   const code = req.query.code;
 
@@ -90,6 +92,7 @@ app.get("/auth/callback", async (req, res) => {
 
   res.redirect("/");
 });
+
 
 
 // ----------------------
