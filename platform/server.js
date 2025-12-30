@@ -84,15 +84,53 @@ app.get("/auth/callback", async (req, res) => {
 
   req.session.user = user;
 
-  // ⭐ DM the user
-  const slackId = user.identity.slack_id;
-  const name = user.identity.first_name;
+// ⭐ DM the user
+const slackId = user.identity.slack_id;
+const name = user.identity.first_name;
 
-  if (slackId) {
-    dmUser(slackId, `Hey ${name}! You just logged in 🎉`);
-  }
+if (slackId) {
+  dmUser(
+    slackId,
+    {
+      text: `Hey ${name}! You just logged in to The Hackers platform.`,
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `Hey ${name}! You just logged in to *The Hackers* platform.\nIf this wasn't you, notify security by pressing the button below..`
+          }
+        },
+        {
+          type: "actions",
+          elements: [
+            {
+              type: "button",
+              text: {
+                type: "plain_text",
+                text: "Not Me"
+              },
+              action_id: "not_me_pressed",
+              style: "danger"
+            },
+            {
+              type: "button",
+              text: {
+                type: "plain_text",
+                text: "Open Dashboard"
+              },
+              url: "https://thehackers.dev/dashboard",
+              style: "primary"
+            }
+          ]
+        }
+      ]
+    }
+  );
+}
 
-  res.redirect("/");
+res.redirect("/");
+
 });
 
 
@@ -190,6 +228,30 @@ app.post("/save", requireAuth, async (req, res) => {
 });
 
 // ----------------------
+
+app.post("/slack/actions", express.urlencoded({ extended: true }), async (req, res) => {
+  const payload = JSON.parse(req.body.payload);
+
+  if (payload.type === "block_actions") {
+    const action = payload.actions[0];
+
+    if (action.action_id === "not_me_pressed") {
+      // DM YOU (the admin)
+      const adminSlackId = process.env.ADMIN_SLACK_ID;
+
+      dmUser(adminSlackId, `⚠️ Someone clicked *Not Me* on a login alert.\nUser: ${payload.user.id}`);
+
+      // Optional: respond to Slack so the button shows feedback
+      return res.json({
+        text: "Thanks — we’ve alerted the admin. If nothing happens in about 15mins, call @Duckers.",
+        replace_original: false
+      });
+    }
+  }
+
+  res.sendStatus(200);
+});
+
 
 app.listen(process.env.PORT || 3000, () =>
   console.log("Running on http://localhost:3000")
