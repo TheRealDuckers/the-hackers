@@ -131,19 +131,11 @@ res.redirect("/");
 // ----------------------
 
 app.get("/", requireAuth, (req, res) => {
-  const html = fs.readFileSync("./index.html", "utf8");
-  res.send(
-    html.replace(
-      "{{CONTENT}}",
-      `
-      <h1 class="text-xl font-bold mb-4">Welcome, ${req.session.user.identity.first_name}
-</h1>
-<p>You shouldn't be here... Its not ready yet!</p>
-      <a href="/files" class="text-blue-600 underline">View files</a>
-    `
-    )
-  );
+  let html = fs.readFileSync(__dirname + "/home.html", "utf8");
+  html = html.replace("{{NAME}}", req.session.user.identity.first_name);
+  res.send(html);
 });
+
 
 app.get("/files", requireAuth, async (req, res) => {
   const octokit = await getOctokit();
