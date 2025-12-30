@@ -113,15 +113,6 @@ if (slackId) {
               action_id: "not_me_pressed",
               style: "danger"
             },
-            {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "Open Dashboard"
-              },
-              url: "https://thehackers.dev/dashboard",
-              style: "primary"
-            }
           ]
         }
       ]
