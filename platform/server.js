@@ -131,7 +131,7 @@ res.redirect("/");
 // ----------------------
 
 app.get("/", requireAuth, (req, res) => {
-  let html = fs.readFileSync(__dirname + "/home.html", "utf8");
+  let html = fs.readFileSync(__dirname + "/index.html", "utf8");
   html = html.replace("{{NAME}}", req.session.user.identity.first_name);
   res.send(html);
 });
