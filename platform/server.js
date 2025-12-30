@@ -98,7 +98,7 @@ if (slackId) {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: `Hey ${name}! You just logged in to *The Hackers* platform.\nIf this wasn't you, notify security by pressing the button below..`
+            text: `Hey ${name}! You just logged in to *The Hackers* platform.\nIf this wasn't you, notify security by pressing the button below :ms-arrow-down:left:`
           }
         },
         {
