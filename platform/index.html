@@ -1,10 +1,260 @@
 <!DOCTYPE html>
-<html>
 <head>
-  <title>The Hackers - Platform</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>The Hackers - {{NAME}}'s Dashboard</title>
 </head>
-<body class="p-6">
-  {{CONTENT}}
-</body>
-</html>
+
+
+<style> 
+/* Global Colors */
+:root {
+    --bg: #850132;
+    --accent: #f88d0b;
+    --text-light: #f2e8e8;
+    --text-muted: #f7c59f;
+    --card-bg: rgba(0, 0, 0, 0.25);
+}
+
+/* Reset */
+* {
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text-light);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--accent);
+}
+
+/* Layout helpers */
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.site-header {
+    padding: 20px 0 10px;
+    text-align: center;
+}
+
+.site-header h1 {
+    color: var(--accent);
+    font-size: 3rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.site-header h1 span {
+    display: inline-block;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 12px;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+nav ul li a:hover {
+    color: var(--accent);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.hero h2 {
+    color: var(--accent);
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* Section base */
+section {
+    padding: 30px 0;
+}
+
+.section-title {
+    color: var(--accent);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 20px 18px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+}
+
+.card p {
+    color: var(--text-light);
+    font-size: 0.98rem;
+}
+
+/* List styling */
+.steps-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.steps-list li {
+    margin-bottom: 14px;
+    padding-left: 40px;
+    position: relative;
+}
+
+.steps-list li::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.phase-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+
+/* Two-column layout */
+.grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns;
+    }
+}
+
+.nav-image {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.nav-image img {
+    max-width: 40%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+</style>
+
+<section class="hero">
+        
+
+        <div class="wrapper">
+            <h2>hello, {{NAME}}</h2>
+            <p>
+                Your still alive - wow. Good for you.
+            </p>
+        </div>
+    </section>
+    
+     <section id="hackers">
+        <div style="text-align: center;" class="wrapper">
+            <h3 style="text-align:center" class="section-title">Platform Menu</h3>
+
+            <div class="card">
+                <h3>Go to the repo editor ➙</h3>
+                
+            </div>
+
+            <div class="card">
+                <h3>Other Shortcuts</h3>
+                <a href="https://github.com/TheRealDuckers/the-hackers-project">
+                <div class="card">             
+                <p>
+                    Public Github Repo ↗
+                </p>
+                </div>
+                </a>
+            
+            <a href="https://hackclub.enterprise.slack.com/archives/C0A5MSNSYRE">
+                <div class="card">
+                <p> 
+                   Slack Channel (Players) ↗
+                </p>
+            </div>
+            </a>
+            
+<a href="https://hackclub.enterprise.slack.com/archives/C0A4M686W2F">
+            <div class="card">
+                <p>
+                   Slack Channel (Public) ↗
+                </p>
+            </div>
+            </a>
+            </div>
+        </div>
+    </section>
