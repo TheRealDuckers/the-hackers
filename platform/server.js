@@ -50,7 +50,7 @@ app.get("/login", (req, res) => {
   u.searchParams.set("client_id", process.env.HACKCLUB_CLIENT_ID);
   u.searchParams.set("redirect_uri", process.env.HACKCLUB_REDIRECT_URI);
   u.searchParams.set("response_type", "code");
-  u.searchParams.set("scope", "profile email slack_id");
+  u.searchParams.set("scope", "profile email slack_id name");
 
   res.redirect(u.toString());
 });
