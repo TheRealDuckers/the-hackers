@@ -76,7 +76,7 @@ app.get("/auth/callback", async (req, res) => {
 
   const tokens = await tokenRes.json();
 
-  const userRes = await fetch("https://auth.hackclub.com/api/v1/name", {
+  const userRes = await fetch("https://auth.hackclub.com/api/v1/me", {
     headers: { Authorization: `Bearer ${tokens.access_token}` },
   });
 
