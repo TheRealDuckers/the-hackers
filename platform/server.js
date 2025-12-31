@@ -89,36 +89,30 @@ const slackId = user.identity.slack_id;
 const name = user.identity.first_name;
 
 if (slackId) {
-  dmUser(
-    slackId,
+  dmUser(slackId, {
+  text: `Hey ${name}! You just logged in to The Hackers platform.`,
+  blocks: [
     {
-      text: `Hey ${name}! You just logged in to The Hackers platform.`,
-      blocks: [
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `Hey ${name}! You just logged in to *The Hackers* platform.\nIf this wasn't you, notify security by pressing the button below.`
+      }
+    },
+    {
+      type: "actions",
+      elements: [
         {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: `Hey ${name}! You just logged in to *The Hackers* platform.\nIf this wasn't you, notify security by pressing the button below :ms-arrow-down-left:`
-          }
-        },
-        {
-          type: "actions",
-          elements: [
-            {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "Not Me"
-              },
-              action_id: "not_me_pressed",
-              style: "danger"
-            },
-          ]
+          type: "button",
+          text: { type: "plain_text", text: "Not Me" },
+          action_id: "not_me_pressed",
+          style: "danger"
         }
       ]
     }
-  );
-}
+  ]
+});
+
 
 res.redirect("/");
 
