@@ -84,39 +84,45 @@ app.get("/auth/callback", async (req, res) => {
 
   req.session.user = user;
 
-// ⭐ DM the user
-const slackId = user.identity.slack_id;
-const name = user.identity.first_name;
+  // ⭐ Correct name extraction
+  const name =
+    user.name ||
+    user.identity?.name ||
+    user.identity?.first_name ||
+    user.identity?.email?.split("@")[0] ||
+    "there";
 
-if (slackId) {
-  dmUser(slackId, {
-  text: `Hey ${name}! You just logged in to The Hackers platform.`,
-  blocks: [
-    {
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: `Hey ${name}! You just logged in to *The Hackers* platform.\nIf this wasn't you, notify security by pressing the button below.`
-      }
-    },
-    {
-      type: "actions",
-      elements: [
+  const slackId = user.identity.slack_id;
+
+  if (slackId) {
+    dmUser(slackId, {
+      text: `Hey ${name}! You just logged in to The Hackers platform.`,
+      blocks: [
         {
-          type: "button",
-          text: { type: "plain_text", text: "Not Me" },
-          action_id: "not_me_pressed",
-          style: "danger"
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `Hey ${name}! You just logged in to *The Hackers* platform.\nIf this wasn't you, notify security by pressing the button below.`
+          }
+        },
+        {
+          type: "actions",
+          elements: [
+            {
+              type: "button",
+              text: { type: "plain_text", text: "Not Me" },
+              action_id: "not_me_pressed",
+              style: "danger"
+            }
+          ]
         }
       ]
-    }
-  ]
+    });
+  }
+
+  res.redirect("/");
 });
 
-
-res.redirect("/");
-
-});
 
 
 
