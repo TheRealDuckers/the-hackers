@@ -141,38 +141,34 @@ app.get("/", requireAuth, (req, res) => {
 
 
 
+const { getOctokit } = require("./github.js");
+
 app.get("/files", requireAuth, async (req, res) => {
-  const octokit = await getOctokit();
-  const { data } = await octokit.repos.getContent({
-    owner: process.env.GITHUB_REPO_OWNER,
-    repo: process.env.GITHUB_REPO_NAME,
-    path: "",
-  });
+  try {
+    const octokit = await getOctokit();
 
-  const files = data.filter((f) => f.type === "file");
+    const { data } = await octokit.repos.getContent({
+      owner: process.env.GITHUB_REPO_OWNER,
+      repo: process.env.GITHUB_REPO_NAME,
+      path: "",
+    });
 
-  const list = files
-    .map(
-      (f) =>
-        `<li><a class="text-blue-600 underline" href="/edit?path=${encodeURIComponent(
-          f.path
-        )}">${f.path}</a></li>`
-    )
-    .join("");
+    const files = data
+      .filter((item) => item.type === "file")
+      .map((file) => file.name);
 
-  const html = fs.readFileSync("./index.html", "utf8");
-  res.send(html.replace("{{CONTENT}}", `<ul>${list}</ul>`));
+    res.send(`
+      <h1>Files in Repo</h1>
+      <ul>
+        ${files.map((f) => `<li>${f}</li>`).join("")}
+      </ul>
+    `);
+  } catch (err) {
+    console.error("GitHub error:", err);
+    res.send("<h1>GitHub error — check logs</h1>");
+  }
 });
 
-app.get("/edit", requireAuth, async (req, res) => {
-  const path = req.query.path;
-
-  const octokit = await getOctokit();
-  const { data } = await octokit.repos.getContent({
-    owner: process.env.GITHUB_REPO_OWNER,
-    repo: process.env.GITHUB_REPO_NAME,
-    path,
-  });
 
   const content = Buffer.from(data.content, data.encoding).toString("utf8");
 
