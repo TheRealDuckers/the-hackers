@@ -5,6 +5,8 @@ const fetch = require("node-fetch");
 const fs = require("fs");
 const { App } = require("@octokit/app");
 const { Octokit } = require("@octokit/rest");
+const ALLOWED_EMAILS = require("./allowed.js");
+
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -82,7 +84,22 @@ app.get("/auth/callback", async (req, res) => {
 
   const user = await userRes.json();
 
+
   req.session.user = user;
+
+
+// Check if user is allowed
+if (!ALLOWED_EMAILS.includes(user.email)) {
+  console.log("❌ Unauthorized login attempt:", user.email);
+
+  // Destroy session so they aren't logged in
+  req.session.destroy(() => {
+    res.sendFile(path.join(__dirname, "platform", "no-access.html"));
+  });
+
+  return; // Stop the login flow
+}
+
 
   // ⭐ Correct name extraction
   const name =
