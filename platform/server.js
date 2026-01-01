@@ -187,8 +187,6 @@ app.get("/files", requireAuth, async (req, res) => {
 });
 
 
-  const content = Buffer.from(data.content, data.encoding).toString("utf8");
-
 
 
 // ----------------------
