@@ -189,22 +189,7 @@ app.get("/files", requireAuth, async (req, res) => {
 
   const content = Buffer.from(data.content, data.encoding).toString("utf8");
 
-  const html = fs.readFileSync("./index.html", "utf8");
-  res.send(
-    html.replace(
-      "{{CONTENT}}",
-      `
-      <h1 class="text-xl font-bold mb-4">Editing ${path}</h1>
-      <form method="POST" action="/save">
-        <textarea name="content" class="w-full h-80 border p-2">${content}</textarea>
-        <input type="hidden" name="path" value="${path}">
-        <input type="hidden" name="sha" value="${data.sha}">
-        <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Save</button>
-      </form>
-    `
-    )
-  );
-});
+
 
 // ----------------------
 // Save to GitHub
