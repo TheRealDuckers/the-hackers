@@ -94,7 +94,7 @@ if (!ALLOWED_EMAILS.includes(user.identity.email)) {
   console.log("❌ Unauthorized login attempt:", user.identity.email);
 
   req.session.destroy(() => {
-    res.sendFile(path.join(__dirname, "platform", "no-access.html"));
+    res.sendFile(path.join(__dirname, "no-access.html"));
   });
 
   return;
