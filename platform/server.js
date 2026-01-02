@@ -93,7 +93,7 @@ app.get("/auth/callback", async (req, res) => {
   req.session.user = user;
 
 
-const email = user.identity?.email?.toLowerCase();
+const email = user.identity?.primary_email?.toLowerCase();
 
 if (!ALLOWED_EMAILS.includes(email)) {
   console.log("❌ Unauthorized login attempt:", email);
@@ -104,6 +104,7 @@ if (!ALLOWED_EMAILS.includes(email)) {
 
   return;
 }
+
 
 
 
