@@ -5,7 +5,10 @@ const fetch = require("node-fetch");
 const fs = require("fs");
 const { App } = require("@octokit/app");
 const { Octokit } = require("@octokit/rest");
-const ALLOWED_EMAILS = require("./allowed.js");
+const ALLOWED_EMAILS = process.env.ALLOWED_EMAILS
+  ? process.env.ALLOWED_EMAILS.split(",").map(e => e.trim().toLowerCase())
+  : [];
+;
 const path = require("path");
 
 
@@ -90,8 +93,10 @@ app.get("/auth/callback", async (req, res) => {
   req.session.user = user;
 
 
-if (!ALLOWED_EMAILS.includes(user.identity.email)) {
-  console.log("❌ Unauthorized login attempt:", user.identity.email);
+const email = user.identity?.email?.toLowerCase();
+
+if (!ALLOWED_EMAILS.includes(email)) {
+  console.log("❌ Unauthorized login attempt:", email);
 
   req.session.destroy(() => {
     res.sendFile(path.join(__dirname, "no-access.html"));
@@ -99,6 +104,7 @@ if (!ALLOWED_EMAILS.includes(user.identity.email)) {
 
   return;
 }
+
 
 
   // ⭐ Correct name extraction
